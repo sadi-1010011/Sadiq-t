@@ -10,9 +10,50 @@
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
+  const navDrawer = document.getElementById('nav-drawer');
+  const navDrawerClose = document.getElementById('nav-drawer-close');
+  const navOverlay = document.getElementById('nav-overlay');
   const navLinkItems = document.querySelectorAll('.nav__link');
   const sections = document.querySelectorAll('.section');
   const reveals = document.querySelectorAll('.reveal');
+  const themeToggle = document.getElementById('theme-toggle');
+
+  // ---- Theme: Light / Dark Mode ----
+  function getPreferredTheme() {
+    var saved = localStorage.getItem('theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  // Apply immediately (no flash)
+  applyTheme(getPreferredTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+
+      // Add transitioning class for extra animation hooks
+      document.body.classList.add('theme-transitioning');
+      applyTheme(next);
+
+      setTimeout(function () {
+        document.body.classList.remove('theme-transitioning');
+      }, 600);
+    });
+  }
+
+  // Listen for OS theme changes
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
 
   // ---- Navigation: Scroll State ----
   let lastScrollY = 0;
@@ -38,33 +79,48 @@
     }
   }, { passive: true });
 
-  // ---- Navigation: Mobile Toggle ----
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function () {
-      navToggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-    });
-
-    // Close mobile nav on link click
-    navLinkItems.forEach(function (link) {
-      link.addEventListener('click', function () {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close on CTA click in nav
-    const navCta = document.querySelector('.nav__cta');
-    if (navCta) {
-      navCta.addEventListener('click', function () {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    }
+  function setNavOpen(isOpen) {
+    if (navToggle) navToggle.classList.toggle('open', isOpen);
+    if (navLinks) navLinks.classList.toggle('open', isOpen);
+    if (navDrawer) navDrawer.classList.toggle('open', isOpen);
+    if (navOverlay) navOverlay.classList.toggle('open', isOpen);
+    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
+
+  // ---- Navigation: Mobile Drawer & Toggle ----
+  if (navToggle) {
+    navToggle.addEventListener('click', function () {
+      const isOpen = navDrawer ? navDrawer.classList.contains('open') : (navLinks && navLinks.classList.contains('open'));
+      setNavOpen(!isOpen);
+    });
+  }
+
+  if (navDrawerClose) {
+    navDrawerClose.addEventListener('click', function () {
+      setNavOpen(false);
+    });
+  }
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', function () {
+      setNavOpen(false);
+    });
+  }
+
+  // Close mobile drawer on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      setNavOpen(false);
+    }
+  });
+
+  // Close drawer on any navigation link click
+  document.querySelectorAll('.nav a, .nav__drawer a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      setNavOpen(false);
+    });
+  });
 
   // ---- Active Section Highlighting ----
   function highlightActiveSection() {
@@ -140,6 +196,7 @@
   // ---- Cursor Glow Effect (Desktop Only) ----
   if (window.matchMedia('(min-width: 768px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const glowFollower = document.createElement('div');
+    glowFollower.className = 'cursor-glow';
     glowFollower.style.cssText = `
       position: fixed;
       width: 400px;
@@ -149,7 +206,7 @@
       pointer-events: none;
       z-index: 0;
       transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
+      transition: opacity 0.3s, background 0.5s;
       opacity: 0;
     `;
     document.body.appendChild(glowFollower);
