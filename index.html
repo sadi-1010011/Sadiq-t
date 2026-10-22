@@ -78,6 +78,21 @@
 
 <body>
 
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__logo">
+        <span class="preloader__bracket">&lt;</span><span class="preloader__name">Sadiq</span><span class="preloader__dot">.dev</span><span class="preloader__bracket">/&gt;</span>
+      </div>
+      <div class="preloader__bar">
+        <div class="preloader__fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
   <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- Background effects -->
@@ -243,6 +258,11 @@
       <div class="container">
         <div class="hero__grid">
           <div class="hero__content">
+            <div class="hero__mobile-avatar">
+              <div class="hero__mobile-avatar-glow" aria-hidden="true"></div>
+              <img src="profile.webp" alt="Muhammed Sadiq T" width="120" height="120" loading="eager">
+            </div>
+
             <p class="hero__greeting">Hello, I'm</p>
 
             <h1 class="hero__name">
@@ -306,7 +326,7 @@
             <div class="hero__particle hero__particle--3" aria-hidden="true"></div>
             <div class="hero__particle hero__particle--4" aria-hidden="true"></div>
             <div class="hero__image-blob">
-              <img src="profile.png" alt="Muhammed Sadiq T — Full Stack Engineer" class="hero__image" width="420"
+              <img src="profile.webp" alt="Muhammed Sadiq T — Full Stack Engineer" class="hero__image" width="420"
                 height="420" loading="eager">
             </div>
           </div>
@@ -604,10 +624,11 @@
         </div>
 
         <article class="project-card project-card--featured reveal reveal-delay-1">
+          <div class="project-card__gradient-border" aria-hidden="true"></div>
           <a href="https://pluuto.in/" target="_blank" rel="noopener noreferrer"
             class="project-card__visual project-card__visual--pluuto project-card__visual--has-img" tabindex="-1"
             aria-hidden="true">
-            <img src="pluuto_site.png" alt="Pluuto — Event discovery & ticketing platform preview"
+            <img src="pluuto_site.webp" alt="Pluuto — Event discovery & ticketing platform preview"
               class="project-card__img" width="1470" height="956" loading="lazy">
           </a>
           <div class="project-card__content">
@@ -638,7 +659,7 @@
             <a href="https://wheelzcart.com/" target="_blank" rel="noopener noreferrer"
               class="project-card__visual project-card__visual--nattu project-card__visual--has-img" tabindex="-1"
               aria-hidden="true">
-              <img src="wheelzcart_site.png" alt="WheelzCart automotive spare parts e-commerce preview" class="project-card__img"
+              <img src="wheelzcart_site.webp" alt="WheelzCart automotive spare parts e-commerce preview" class="project-card__img"
                 width="1470" height="956" loading="lazy">
             </a>
             <div class="project-card__content">
@@ -665,7 +686,7 @@
             <a href="https://kaayi2.vercel.app/" target="_blank" rel="noopener noreferrer"
               class="project-card__visual project-card__visual--budget project-card__visual--has-img" tabindex="-1"
               aria-hidden="true">
-              <img src="cashbook_site.png" alt="CashBook personal finance app preview" class="project-card__img"
+              <img src="cashbook_site.webp" alt="CashBook personal finance app preview" class="project-card__img"
                 width="1470" height="956" loading="lazy">
             </a>
             <div class="project-card__content">
@@ -692,7 +713,7 @@
             <a href="https://kaligraphinfosystems.com/" target="_blank" rel="noopener noreferrer"
               class="project-card__visual project-card__visual--kaligraph project-card__visual--has-img" tabindex="-1"
               aria-hidden="true">
-              <img src="kaligraph_site.png" alt="Kaligraph Info Systems website preview" class="project-card__img"
+              <img src="kaligraph_site.webp" alt="Kaligraph Info Systems website preview" class="project-card__img"
                 width="1470" height="956" loading="lazy">
             </a>
             <div class="project-card__content">
@@ -718,7 +739,7 @@
             <a href="https://aiminfinitegaming.com/" target="_blank" rel="noopener noreferrer"
               class="project-card__visual project-card__visual--gaming project-card__visual--has-img" tabindex="-1"
               aria-hidden="true">
-              <img src="aigaming_site.png" alt="Aim Infinite Gaming website preview" class="project-card__img"
+              <img src="aigaming_site.webp" alt="Aim Infinite Gaming website preview" class="project-card__img"
                 width="1470" height="956" loading="lazy">
             </a>
             <div class="project-card__content">
@@ -887,6 +908,40 @@
       <p class="footer__built">Calicut, Kerala, India</p>
     </div>
   </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Quick navigation">
+    <a href="#about" class="bottom-nav__item nav__link" data-section="about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>About</span>
+    </a>
+    <a href="#experience" class="bottom-nav__item nav__link" data-section="experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      <span>Work</span>
+    </a>
+    <a href="#skills" class="bottom-nav__item nav__link" data-section="skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <span>Skills</span>
+    </a>
+    <a href="#projects" class="bottom-nav__item nav__link" data-section="projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      <span>Projects</span>
+    </a>
+    <a href="#contact" class="bottom-nav__item nav__link" data-section="contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
