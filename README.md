@@ -1,6 +1,6 @@
 # Muhammed Sadiq T — Portfolio
 
-Personal developer portfolio built with modern vanilla HTML5, CSS3, and JavaScript. Designed with clean design systems, rich aesthetics, dark/light theme switching, and zero external runtime dependencies.
+Personal developer portfolio built with modern vanilla HTML5, CSS3, and JavaScript. Engineered with a custom design system, dark/light theme switching, responsive micro-interactions, mobile-first enhancements, and zero external runtime dependencies.
 
 **Live Site:** [sadiqt.com](https://sadiqt.com)
 
@@ -12,13 +12,13 @@ A high-performance single-page portfolio showcasing my work as a Full Stack Engi
 
 ### Sections
 
-- **Hero** — Value proposition, social links, resume quick-download, and profile visual
-- **About** — Background, metrics & achievements, and engineering philosophy
+- **Hero** — Value proposition, social links, resume quick-download, desktop profile visual, and mobile glow avatar
+- **About** — Background, animated metrics & achievements, and engineering philosophy
 - **Experience** — Timeline highlighting key roles (Nexbex, Mapview, Pluuto) with company logos and outcomes
 - **Skills** — Categorized technical proficiencies (Languages, Frontend, Backend, Tools & DevOps)
-- **Projects** — Featured flagship project (Pluuto) and 2x2 grid of shipped client/product apps with live preview screenshots
+- **Projects** — Featured flagship project (Pluuto) and 2x2 grid of shipped client/product apps with live preview screenshots (mobile swipeable carousel)
 - **Education & Certifications** — Formal degree & industry certifications
-- **Contact** — Intent-based direct action links (For teams, For clients, Call requests) and social profiles
+- **Contact** — Intent-based direct action links (For teams, For clients, Call requests), 1-click email copy, and social profiles
 
 ---
 
@@ -26,10 +26,10 @@ A high-performance single-page portfolio showcasing my work as a Full Stack Engi
 
 | Layer | Technology | Details |
 |---|---|---|
-| **Structure** | HTML5 | Semantic elements, accessible landmarks, SEO metadata |
-| **Styling** | Vanilla CSS3 | Custom properties (design tokens), dark & light mode palettes, responsive grid/flexbox |
-| **Logic** | Vanilla ES6+ JavaScript | Theme state management, scroll-reveal observer, active link tracking, interactive mouse glow |
-| **Fonts & Icons** | Inter, JetBrains Mono, Inline SVGs | Clean typography and zero external icon library overhead |
+| **Structure** | HTML5 | Semantic elements, accessible landmarks, SEO & OpenGraph meta tags, JSON-LD Schema.org |
+| **Styling** | Vanilla CSS3 | Custom properties (design tokens), fluid `clamp()` typography, dark/light themes, glassmorphism |
+| **Logic** | Vanilla ES6+ JavaScript | Theme state management, IntersectionObserver reveals, stat counters, 3D tilt, easter eggs |
+| **Assets & Media** | WebP, Inline SVGs | Ultra-optimized WebP imagery (96% size reduction), zero runtime icon library overhead |
 
 ---
 
@@ -37,20 +37,21 @@ A high-performance single-page portfolio showcasing my work as a Full Stack Engi
 
 ```
 portfolio-sadiq/
-├── index.html              # Main HTML — all semantic sections and SEO tags
-├── index.css               # Design system tokens, themes (dark/light), animations, responsive rules
-├── script.js               # Theme toggling, scroll reveals, active nav, mobile drawer, cursor glow
-├── profile.png             # Hero profile image
+├── index.html              # Main HTML — semantic sections, SEO/OG meta, accessibility tags
+├── index.css               # Design system tokens, themes, animations, mobile-first responsive rules
+├── script.js               # Theme toggling, scroll reveals, stat counters, bottom nav, easter egg
 ├── cv.pdf                  # Downloadable curriculum vitae / resume
 ├── favicon.svg             # Custom SVG favicon
+├── profile.webp            # Optimized hero image (desktop & mobile avatar)
+├── profile.png             # Fallback image for OpenGraph / Twitter crawlers
 ├── nexbex.webp             # Experience logo: Nexbex Solutions
 ├── mapview.webp            # Experience logo: Mapview Geographical Solutions
 ├── pluuto.png              # Experience logo: Pluuto
-├── pluuto_site.png         # Project preview: Pluuto (Featured)
-├── wheelzcart_site.png     # Project preview: WheelzCart
-├── cashbook_site.png       # Project preview: CashBook
-├── kaligraph_site.png      # Project preview: KaligraphInfoSystems
-└── aigaming_site.png       # Project preview: AIGaming
+├── pluuto_site.webp        # Project preview: Pluuto (Featured)
+├── wheelzcart_site.webp    # Project preview: WheelzCart
+├── cashbook_site.webp      # Project preview: CashBook
+├── kaligraph_site.webp     # Project preview: KaligraphInfoSystems
+└── aigaming_site.webp      # Project preview: AIGaming
 ```
 
 ---
@@ -67,19 +68,34 @@ portfolio-sadiq/
 
 ---
 
-## Key Features
+## Key Features & UI/UX Polish
 
-- **Dark & Light Modes**: Seamless theme switching with localStorage persistence, smooth transitions, and system `prefers-color-scheme` support.
-- **Project Showcase**: Live website screenshots with hover zoom animations, tech tags, and direct Live / GitHub links.
-- **Fluid & Responsive Layout**: Tailored responsive layouts for desktop, tablet, and mobile with an animated mobile drawer.
-- **Micro-Animations & Interaction**: IntersectionObserver scroll-reveal animations and an ambient cursor follower glow.
-- **Zero Build Tooling**: Runs instantly without node build steps, bundlers, or compilation.
+- **Preloader & Smooth Onboarding**: Custom animated brand spinner and seamless fade-out on document load.
+- **Reading Scroll Progress**: Real-time gradient progress bar fixed to the top viewport edge.
+- **Dark & Light Modes**: Theme switching with `localStorage` persistence, smooth token transitions, and automatic `prefers-color-scheme` adaptation.
+- **Fluid Typography**: Dynamic sizing using CSS `clamp()` ensuring proportional text across mobile, tablet, and ultra-wide screens.
+- **Mobile-First Experience**:
+  - Compact hero avatar with an animated multi-color glowing ring.
+  - Floating frosted-glass bottom navigation dock with scroll direction auto-hiding.
+  - Horizontal swipe-friendly project card preview carousel with momentum scrolling.
+- **Delightful Micro-Interactions**:
+  - Animated stat counters with spring-overshoot effect on scroll-reveal.
+  - 3D magnetic card spotlight tilt tracking mouse coordinates on desktop.
+  - 1-click email copy to clipboard with floating toast notification feedback.
+  - Smooth back-to-top floating button with circular indicator.
+- **Konami Code Easter Egg**: Press `↑` `↑` `↓` `↓` `←` `→` `←` `→` `B` `A` on desktop for a celebratory confetti rain shower!
+- **Performance & Asset Optimization**:
+  - Converted image pipeline to WebP reducing total image weight by 96% (~15.5 MB down to ~730 KB).
+  - Explicit image width/height dimensions to eliminate Cumulative Layout Shift (CLS).
+  - Native `loading="lazy"` and `decoding="async"` on all offscreen images.
+- **Accessibility (a11y)**: Semantic landmark structure, accessible ARIA labels, high-visibility `:focus-visible` outlines, and full `prefers-reduced-motion` compliance.
+- **Zero Build Tooling**: 100% pure vanilla stack — runs directly in any browser without npm, bundlers, or compilation steps.
 
 ---
 
 ## Running Locally
 
-Simply open the file directly in any modern browser:
+Open [`index.html`](file:///Users/sadiq/Hobby/portfolio-sadiq/index.html) directly in any modern browser:
 
 ```bash
 open index.html
